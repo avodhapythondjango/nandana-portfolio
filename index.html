@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Portfolio of Nandana K Saji, Software Developer and Web Developer.">
+<title>Nandana K Saji | Web Developer</title>
+<style>
+:root {
+  --site-primary: #0D9488;
+  --site-secondary: #DFF7F2;
+  --site-background: #F7FAF9;
+  --site-on-primary: #FFFFFF;
+  --site-on-secondary: #134E4A;
+  --site-on-background: #142B2A;
+  --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-font-heading: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+  --surface: light-dark(#FFFFFF, #172322);
+  --surface-soft: light-dark(#EEF5F3, #202F2D);
+  --text: light-dark(#142B2A, #F0F7F5);
+  --muted: light-dark(#58706D, #B2C4C0);
+  --border: light-dark(#D8E5E1, #344744);
+  color-scheme: light dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: var(--site-font-body); background: var(--site-background); color: var(--text); }
+#app { background-color: var(--site-background); color: var(--site-on-background); border-radius: 0; min-height: 100vh; overflow: hidden; }
+a { color: inherit; text-decoration: none; }
+button, a { -webkit-tap-highlight-color: transparent; }
+.wrap { width: min(1100px, calc(100% - 40px)); margin: 0 auto; }
+.nav { display: flex; align-items: center; justify-content: space-between; padding: calc(20px * var(--site-spacing-scale)) 0; gap: 20px; }
+.brand { font-weight: 850; letter-spacing: -.06em; font-size: 1.15rem; }
+.brand span { color: var(--site-primary); }
+.navlinks { display: flex; align-items: center; gap: 26px; color: var(--muted); font-size: .9rem; }
+.navlinks a:hover { color: var(--site-primary); }
+.menu { display: none; border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 10px; padding: 9px 12px; }
+.hero { position: relative; padding: clamp(54px, 9vw, 108px) 0 74px; }
+.hero:before { content: ""; position: absolute; width: 400px; height: 400px; right: -110px; top: -50px; border-radius: 50%; background: var(--site-secondary); opacity: calc(.72 * var(--site-decoration-opacity)); filter: blur(1px); pointer-events: none; }
+.hero-grid { display: grid; grid-template-columns: 1.35fr .65fr; align-items: center; gap: 44px; position: relative; }
+.eyebrow { display: inline-flex; gap: 9px; align-items: center; padding: 8px 12px; border-radius: 999px; background: var(--site-secondary); color: var(--site-on-secondary); font-size: .78rem; font-weight: 750; letter-spacing: .04em; text-transform: uppercase; }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: var(--site-primary); }
+h1 { font-family: var(--site-font-heading); font-size: calc(clamp(2.7rem, 6.4vw, 5.2rem) * var(--site-heading-scale)); line-height: .99; letter-spacing: -.075em; margin: 24px 0 20px; max-width: 720px; }
+h1 em { font-style: normal; color: var(--site-primary); }
+.lead { color: var(--muted); font-size: clamp(1rem, 1.5vw, 1.15rem); line-height: 1.8; max-width: 650px; margin: 0 0 28px; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 13px 18px; border-radius: calc(13px * var(--site-radius-scale)); font-weight: 750; font-size: .92rem; border: 1px solid var(--border); transition: transform .2s, background .2s; }
+.btn:hover { transform: translateY(-2px); }
+.btn.primary { background: var(--site-primary); color: var(--site-on-primary); border-color: var(--site-primary); }
+.btn.secondary { background: var(--surface); color: var(--text); }
+.profile-card { position: relative; border-radius: calc(28px * var(--site-radius-scale)); padding: 28px; background: var(--surface); border: 1px solid var(--border); box-shadow: 0 22px 70px #0c4a3a12; }
+.avatar { width: 82px; height: 82px; border-radius: 24px; display: grid; place-items: center; background: var(--site-primary); color: white; font-size: 2rem; font-weight: 850; letter-spacing: -.07em; margin-bottom: 22px; }
+.profile-card h2 { margin: 0 0 6px; font-size: 1.3rem; letter-spacing: -.04em; }
+.profile-card p { color: var(--muted); line-height: 1.6; margin: 0; font-size: .93rem; }
+.card-divider { height: 1px; background: var(--border); margin: 22px 0; }
+.stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.stat strong { display: block; font-size: 1.5rem; letter-spacing: -.05em; color: var(--site-primary); }
+.stat span { color: var(--muted); font-size: .78rem; }
+.section { padding: 70px 0; }
+.section-head { margin-bottom: 28px; display: flex; align-items: end; justify-content: space-between; gap: 24px; }
+.kicker { color: var(--site-primary); font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .12em; }
+h2.section-title { margin: 9px 0 0; font-size: calc(clamp(1.8rem, 4vw, 2.8rem) * var(--site-heading-scale)); letter-spacing: -.06em; line-height: 1.1; }
+.section-desc { max-width: 480px; color: var(--muted); line-height: 1.7; margin: 0; }
+.skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.skill-card { background: var(--surface); border: 1px solid var(--border); border-radius: calc(18px * var(--site-radius-scale)); padding: 22px; }
+.skill-icon { width: 42px; height: 42px; display: grid; place-items: center; background: var(--site-secondary); color: var(--site-on-secondary); border-radius: 13px; font-size: 1.05rem; font-weight: 850; margin-bottom: 17px; }
+.skill-card h3 { margin: 0 0 9px; font-size: 1rem; }
+.skill-card p { margin: 0; color: var(--muted); font-size: .88rem; line-height: 1.7; }
+.alt { background: var(--surface-soft); }
+.projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.project { padding: 25px; border: 1px solid var(--border); border-radius: calc(20px * var(--site-radius-scale)); background: var(--surface); display: flex; flex-direction: column; min-height: 255px; }
+.project-top { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-bottom: 20px; }
+.project-number { color: var(--site-primary); font-weight: 850; font-size: .83rem; letter-spacing: .08em; }
+.project-type { color: var(--muted); font-size: .78rem; }
+.project h3 { font-size: 1.3rem; margin: 0 0 10px; letter-spacing: -.04em; }
+.project p { color: var(--muted); line-height: 1.7; font-size: .92rem; margin: 0 0 20px; }
+.tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; }
+.tag { border: 1px solid var(--border); border-radius: 999px; padding: 6px 9px; color: var(--muted); font-size: .75rem; }
+.timeline { display: grid; gap: 16px; }
+.job { display: grid; grid-template-columns: 180px 1fr; gap: 24px; padding: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: calc(18px * var(--site-radius-scale)); }
+.job-date { color: var(--site-primary); font-size: .82rem; font-weight: 800; }
+.job h3 { margin: 0 0 5px; font-size: 1.15rem; }
+.company { color: var(--muted); font-size: .9rem; margin-bottom: 12px; }
+.job ul { margin: 0; padding-left: 19px; color: var(--muted); line-height: 1.75; font-size: .9rem; }
+.education { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.edu-card { background: var(--surface); border: 1px solid var(--border); padding: 23px; border-radius: calc(18px * var(--site-radius-scale)); }
+.edu-card h3 { margin: 0 0 7px; font-size: 1rem; }
+.edu-card p { margin: 0; color: var(--muted); line-height: 1.65; font-size: .9rem; }
+.contact-panel { display: grid; grid-template-columns: 1.1fr .9fr; gap: 32px; align-items: center; padding: clamp(26px, 5vw, 50px); background: var(--site-on-background); color: var(--site-background); border-radius: calc(28px * var(--site-radius-scale)); }
+.contact-panel .kicker { color: #72D8C8; }
+.contact-panel h2 { font-size: calc(clamp(2rem, 4vw, 3.1rem) * var(--site-heading-scale)); line-height: 1.06; letter-spacing: -.06em; margin: 10px 0 14px; }
+.contact-panel p { color: light-dark(#B8D0CB, #B8D0CB); line-height: 1.75; margin: 0; }
+.contact-links { display: grid; gap: 11px; }
+.contact-link { display: flex; align-items: center; gap: 12px; background: #ffffff0c; border: 1px solid #ffffff24; border-radius: 13px; padding: 14px; overflow-wrap: anywhere; }
+.contact-link span:first-child { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: var(--site-primary); color: white; font-weight: 800; flex-shrink: 0; }
+.contact-link small { display: block; color: #B8D0CB; margin-bottom: 3px; }
+footer { padding: 25px 0 32px; display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font-size: .8rem; }
+@media (max-width: 820px) { .hero-grid { grid-template-columns: 1fr; } .profile-card { max-width: 440px; } .skills-grid { grid-template-columns: repeat(2, 1fr); } .section-head { display: block; } .section-desc { margin-top: 12px; } .contact-panel { grid-template-columns: 1fr; } }
+@media (max-width: 620px) { .wrap { width: min(100% - 28px, 1100px); } .navlinks { display: none; position: absolute; z-index: 5; top: 64px; left: 14px; right: 14px; padding: 18px; border-radius: 14px; border: 1px solid var(--border); background: var(--surface); flex-direction: column; align-items: stretch; gap: 16px; } .navlinks.open { display: flex; } .menu { display: inline-flex; } .hero { padding-top: 48px; } .skills-grid, .projects, .education { grid-template-columns: 1fr; } .job { grid-template-columns: 1fr; gap: 9px; padding: 20px; } .section { padding: 52px 0; } footer { flex-direction: column; } }
+</style>
+</head>
+<body>
+<div id="app">
+  <header class="wrap nav">
+    <a class="brand" href="#home" aria-label="Nandana home">nandana<span>.</span></a>
+    <nav class="navlinks" id="navlinks" aria-label="Main navigation">
+      <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+    </nav>
+    <button class="menu" id="menu" aria-label="Toggle navigation" aria-expanded="false">☰ Menu</button>
+  </header>
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> Software Developer · Web Developer</div>
+          <h1>Building thoughtful<br>web experiences<span>.</span><br><em>Hello, I’m Nandana.</em></h1>
+          <p class="lead">I build responsive, user-friendly web applications and interfaces with a focus on clean UI, reusable code, and practical solutions for real-world needs.</p>
+          <div class="actions"><a class="btn primary" href="#projects">Explore my work <span aria-hidden="true">↗</span></a><a class="btn secondary" href="#contact">Get in touch</a></div>
+        </div>
+        <aside class="profile-card" id="about">
+          <div class="avatar" aria-label="Nandana initials">NS</div>
+          <h2>Nandana K Saji</h2>
+          <p>Web Developer at Cydez Technology</p>
+          <div class="card-divider"></div>
+          <div class="stat-row"><div class="stat"><strong>2+</strong><span>Years in software development*</span></div><div class="stat"><strong>2</strong><span>Live product projects</span></div></div>
+          <div class="card-divider"></div>
+          <p>Based in Kerala, India · Open to new opportunities</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="wrap">
+        <div class="section-head"><div><div class="kicker">What I work with</div><h2 class="section-title">Skills & toolkit</h2></div><p class="section-desc">A practical toolkit for building responsive interfaces, connecting APIs, and supporting end-to-end application development.</p></div>
+        <div class="skills-grid">
+          <article class="skill-card"><div class="skill-icon">UI</div><h3>Frontend Development</h3><p>HTML5, CSS3, JavaScript, Angular, responsive layouts, accessible UI patterns.</p></article>
+          <article class="skill-card"><div class="skill-icon">API</div><h3>Backend & Integration</h3><p>Python, Django, Flask, RESTful API integration, data flow and application services.</p></article>
+          <article class="skill-card"><div class="skill-icon">{ }</div><h3>Development Practices</h3><p>Reusable components, modular code, debugging, QA testing, code reviews.</p></article>
+          <article class="skill-card"><div class="skill-icon">Git</div><h3>Tools & Collaboration</h3><p>Git version control, sprint planning, teamwork, problem solving and communication.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="projects">
+      <div class="wrap">
+        <div class="section-head"><div><div class="kicker">Selected work</div><h2 class="section-title">Projects I’ve contributed to</h2></div><p class="section-desc">Product work across school operations, yacht management, and a Python-based learning project.</p></div>
+        <div class="projects">
+          <article class="project"><div class="project-top"><span class="project-number">PROJECT 01</span><span class="project-type">ERP · Web Application</span></div><h3>School Management System</h3><p>A school operations platform. Contributed to Admin, Teacher, and Transport modules, including responsive interfaces, user management, fee tracking, notifications, bus routes, boarding points, and vehicle assignments.</p><div class="tags"><span class="tag">Angular</span><span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">REST APIs</span></div></article>
+          <article class="project"><div class="project-top"><span class="project-number">PROJECT 02</span><span class="project-type">Operations · Web Application</span></div><h3>Yacht Management System</h3><p>A management solution for yacht owners and crew. Worked on dashboards and forms for bookings, schedules and expenses, plus crew shifts, task assignments, attendance, and third-party service integration.</p><div class="tags"><span class="tag">Angular</span><span class="tag">Responsive UI</span><span class="tag">API Integration</span><span class="tag">UX</span></div></article>
+          <article class="project"><div class="project-top"><span class="project-number">PROJECT 03</span><span class="project-type">Python · Learning Project</span></div><h3>Road Accident Prediction</h3><p>A Python project exploring road-scene analysis, vehicle movement, and potential accident prediction using computer vision and machine-learning concepts.</p><div class="tags"><span class="tag">Python</span><span class="tag">Computer Vision</span><span class="tag">Machine Learning</span></div></article>
+          <article class="project"><div class="project-top"><span class="project-number">PROJECT 04</span><span class="project-type">Operations · Web Application</span></div><h3>Al Tasnim Maps</h3><p>A dashboard-based management application with Standard Boards, WIP Boards, Crew Calendar, Charts &amp; Tiles, Reports, Data Quality, and User &amp; Role Management. The interface helps users access operational information from one workspace.</p><div class="tags"><span class="tag">Angular</span><span class="tag">.NET</span><span class="tag">Dashboard UI</span><span class="tag">API Integration</span></div></article>
+          <article class="project"><div class="project-top"><span class="project-number">PROJECT 05</span><span class="project-type">Business · Web Application</span></div><h3>Billing Application</h3><p>A business management dashboard for sales, purchases, inventory, accounts, and reports. The dashboard summarizes sales, orders, active customers, available stock, recent transactions, and top-selling items.</p><div class="tags"><span class="tag">Angular</span><span class="tag">.NET</span><span class="tag">Billing UI</span><span class="tag">Inventory</span></div></article>
+          <article class="project"><div class="project-top"><span class="project-number">PROJECT 06</span><span class="project-type">Marine Operations · Web Application</span></div><h3>SeaChef Management</h3><p>An operations and task management interface for marine hospitality workflows. Dashboard features include active and completed tasks, worker activity, task priorities, deficiency reports, task-type distribution, and supervisor actions. Master screens include Template Master, Deficiency Master, and Duty Master.</p><div class="tags"><span class="tag">Dashboard UI</span><span class="tag">Task Management</span><span class="tag">Reports &amp; Charts</span><span class="tag">Master Data</span></div></article>
+          <article class="project"><div class="project-top"><span class="project-number">PROJECT 07</span><span class="project-type">Fleet · Safety Intelligence</span></div><h3>Proximity Driver Intelligence</h3><p>A fleet monitoring dashboard for viewing driver and vehicle summaries, fleet locations, trip monitoring, geofencing, driver scorecards, and safety violations. The interface includes risk-level summaries and daily violation trends.</p><div class="tags"><span class="tag">Angular</span><span class="tag">.NET</span><span class="tag">Fleet Dashboard</span><span class="tag">Maps &amp; Analytics</span></div></article>
+          <article class="project"><div class="project-top"><span class="project-number">PROJECT 08</span><span class="project-type">Workplace Safety · Web Application</span></div><h3>Safety Shield</h3><p>A workplace safety monitoring dashboard for cameras, workers, vehicles, equipment, alerts, and incidents. It includes utilization and violation trends, camera-worker trends, and modules for alert management, SOPs, detection, and reports.</p><div class="tags"><span class="tag">Angular</span><span class="tag">.NET</span><span class="tag">Safety Dashboard</span><span class="tag">Charts &amp; Filters</span></div></article>
+          <article class="project"><div class="project-top"><span class="project-number">PROJECT 09</span><span class="project-type">Travel · Booking Platform</span></div><h3>Tripify</h3><p>A travel booking interface that brings together flight search, hotels, holiday packages, trains, cruises, buses, cabs, travel insurance, visa, and passport services. The flight form supports trip type, route, departure date, passenger count, and travel class selections.</p><div class="tags"><span class="tag">Angular</span><span class="tag">.NET</span><span class="tag">Search Forms</span><span class="tag">Responsive UI</span></div></article>
+          <article class="project"><div class="project-top"><span class="project-number">MY APPROACH</span><span class="project-type">How I work</span></div><h3>Clean, reusable, responsive</h3><p>I value maintainable code, close collaboration with designers and backend teams, and interfaces that work smoothly across desktop and mobile screens.</p><div class="tags"><span class="tag">UI Quality</span><span class="tag">Teamwork</span><span class="tag">Continuous Learning</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="wrap">
+        <div class="section-head"><div><div class="kicker">My journey</div><h2 class="section-title">Experience</h2></div><p class="section-desc">Contributing to application development, interface implementation, API integration, and quality-focused delivery.</p></div>
+        <div class="timeline">
+          <article class="job"><div class="job-date">MAR 2025 — PRESENT</div><div><h3>Web Developer</h3><div class="company">Cydez Technology · Kochi, India</div><ul><li>Develop and maintain web applications using HTML5, CSS3, JavaScript, and Angular.</li><li>Build responsive interfaces and integrate RESTful APIs for application data.</li><li>Contribute to School Management and Yacht Management System modules.</li><li>Collaborate with UI/UX and backend teams; participate in planning, reviews, QA, and production delivery.</li></ul></div></article>
+          <article class="job"><div class="job-date">JAN 2024 — MAR 2025</div><div><h3>Software Developer</h3><div class="company">Mashuptech · Kochi, India</div><ul><li>Developed, tested, and maintained Python applications, APIs, and automation scripts.</li><li>Worked with Django and Flask on backend systems and services.</li><li>Supported data pipeline development, debugging, and database management.</li></ul></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="wrap">
+        <div class="section-head"><div><div class="kicker">Education & more</div><h2 class="section-title">The foundation</h2></div></div>
+        <div class="education">
+          <article class="edu-card"><h3>B.Tech — Computer Science and Engineering</h3><p>APJ Abdul Kalam Technological University<br>2019–2023 · CGPA 8.17</p></article>
+          <article class="edu-card"><h3>Certifications & course</h3><p>Python Programming Essentials Bootcamp<br>C++ Programming Essentials Bootcamp<br>Python and Django — Avodha Institute, Kochi</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="wrap">
+        <div class="contact-panel">
+          <div><div class="kicker">Let’s connect</div><h2>Have a role or project in mind?</h2><p>I’d be happy to discuss how I can contribute to your team. Feel free to reach out by email or phone.</p></div>
+          <div class="contact-links">
+            <a class="contact-link" href="mailto:ksajinandana@gmail.com"><span>@</span><span><small>Email me</small>ksajinandana@gmail.com</span></a>
+            <a class="contact-link" href="tel:+919567376219"><span>☎</span><span><small>Call me</small>+91 95673 76219</span></a>
+            <div class="contact-link"><span>⌖</span><span><small>Location</small>Kottayam, Kerala, India</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap"><span>© <span id="year"></span> Nandana K Saji</span><span>Designed with care · Software Developer Portfolio</span></footer>
+</div>
+<script>
+const menu = document.getElementById('menu');
+const nav = document.getElementById('navlinks');
+menu.addEventListener('click', () => {
+  const open = nav.classList.toggle('open');
+  menu.setAttribute('aria-expanded', String(open));
+});
+nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+  nav.classList.remove('open');
+  menu.setAttribute('aria-expanded', 'false');
+}));
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
